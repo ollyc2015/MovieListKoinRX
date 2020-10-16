@@ -2,6 +2,9 @@
 
 Simple Android application that displays Movie Data using the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
 
+## Useful Info
+This is exactly the same project as [my other Movie List](https://github.com/ollyc2015/MovieListDaggerHiltCR), however, this project uses RXJava in replace of Kotlin Coroutines and Koin in replace of Dagger Hilt.
+
 ### Description
 
 The application consists of a single screen. The screen displays the various movies in a list. For each movie in the list the following parts are visible:
