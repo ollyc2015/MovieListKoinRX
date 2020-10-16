@@ -1,4 +1,4 @@
-package com.oliver_curtis.firestoreexampleproject.common.viewmodel.livedata
+package com.oliver_curtis.movies_list.common.viewmodel.livedata
 
 import androidx.lifecycle.MutableLiveData
 import com.oliver_curtis.movies_list.common.viewmodel.CallResult

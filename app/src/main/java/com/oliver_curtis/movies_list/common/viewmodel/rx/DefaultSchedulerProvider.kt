@@ -1,6 +1,5 @@
-package com.oliver_curtis.firestoreexampleproject.common.viewmodel.rx
+package com.oliver_curtis.movies_list.common.viewmodel.rx
 
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.rx.SchedulerProvider
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

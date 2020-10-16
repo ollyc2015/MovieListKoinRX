@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.livedata.DefaultLiveDataProvider
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.rx.DefaultSchedulerProvider
+import com.oliver_curtis.movies_list.common.viewmodel.livedata.DefaultLiveDataProvider
+import com.oliver_curtis.movies_list.common.viewmodel.rx.DefaultSchedulerProvider
 import com.oliver_curtis.movies_list.common.viewmodel.CallResult
 import com.oliver_curtis.movies_list.domain.interactor.MovieUseCase
 import com.oliver_curtis.movies_list.domain.model.Movie

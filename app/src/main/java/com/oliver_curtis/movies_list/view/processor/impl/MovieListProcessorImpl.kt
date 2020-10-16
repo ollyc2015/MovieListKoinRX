@@ -1,11 +1,9 @@
 package com.oliver_curtis.movies_list.view.processor.impl
 
-import androidx.lifecycle.LifecycleOwner
 import com.oliver_curtis.movies_list.common.viewmodel.CallResult
 import com.oliver_curtis.movies_list.domain.model.Movie
 import com.oliver_curtis.movies_list.view.MovieView
 import com.oliver_curtis.movies_list.view.processor.MovieListProcessor
-import com.oliver_curtis.movies_list.view.viewmodel.MovieViewModel
 
 class MovieListProcessorImpl : MovieListProcessor {
 

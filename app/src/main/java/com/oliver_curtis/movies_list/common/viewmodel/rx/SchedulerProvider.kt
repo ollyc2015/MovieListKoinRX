@@ -1,4 +1,4 @@
-package com.oliver_curtis.firestoreexampleproject.common.viewmodel.rx
+package com.oliver_curtis.movies_list.common.viewmodel.rx
 
 import io.reactivex.Scheduler
 

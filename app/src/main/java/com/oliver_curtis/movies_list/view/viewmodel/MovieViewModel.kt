@@ -3,10 +3,10 @@ package com.oliver_curtis.movies_list.view.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.oliver_curtis.movies_list.common.viewmodel.CallResult
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.livedata.DefaultLiveDataProvider
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.livedata.LiveDataProvider
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.rx.DefaultSchedulerProvider
-import com.oliver_curtis.firestoreexampleproject.common.viewmodel.rx.SchedulerProvider
+import com.oliver_curtis.movies_list.common.viewmodel.livedata.DefaultLiveDataProvider
+import com.oliver_curtis.movies_list.common.viewmodel.livedata.LiveDataProvider
+import com.oliver_curtis.movies_list.common.viewmodel.rx.DefaultSchedulerProvider
+import com.oliver_curtis.movies_list.common.viewmodel.rx.SchedulerProvider
 import com.oliver_curtis.movies_list.domain.interactor.MovieUseCase
 import com.oliver_curtis.movies_list.domain.model.Movie
 import io.reactivex.SingleObserver
