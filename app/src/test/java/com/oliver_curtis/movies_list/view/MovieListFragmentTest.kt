@@ -7,9 +7,7 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
 import com.oliver_curtis.movies_list.common.viewmodel.CallResult
 import com.oliver_curtis.movies_list.domain.model.Movie
-import com.oliver_curtis.movies_list.view.processor.MovieListProcessor
 import com.oliver_curtis.movies_list.view.viewmodel.MovieViewModel
-import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -20,7 +18,6 @@ import org.mockito.MockitoAnnotations
 
 class MovieListFragmentTest {
 
-    @Mock lateinit var movieListProcessor: MovieListProcessor
     @Mock lateinit var viewModel: MovieViewModel
     @Mock lateinit var movieObserver: Observer<CallResult<List<Movie>>>
 
@@ -70,5 +67,4 @@ class MovieListFragmentTest {
             verify(movieObserver).onChanged(capture())
         }.run { Assert.assertEquals(expected, firstValue.error()) }
     }
-
 }
