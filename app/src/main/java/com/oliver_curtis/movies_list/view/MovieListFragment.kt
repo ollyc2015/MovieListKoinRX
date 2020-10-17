@@ -88,13 +88,8 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
         (movieList.adapter as MovieListAdapter).updateAll(movies)
     }
 
-    override fun displayError(error: Throwable) {
-        toast(error.toString())
-    }
-
-    private fun toast(string: String) {
-
-        Toast.makeText(requireContext(), string, Toast.LENGTH_LONG).show()
+    override fun displayError(error: Int) {
+        movieRequestStatus.showError(error)
     }
 
     private fun getMoviesFromDatabase(page:Int): MutableLiveData<CallResult<List<Movie>>> {

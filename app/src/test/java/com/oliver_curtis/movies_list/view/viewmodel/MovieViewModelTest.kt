@@ -66,7 +66,7 @@ class MovieViewModelTest {
     }
 
     @Test
-    fun `givenErrorWhilstObservingGetMovies_thenErrorObserved`() {
+    fun `givenError_WhenObservingGetMovies_thenErrorObserved`() {
         val throwable = Throwable("Nasty Error")
 
         Mockito.`when`(defaultLiveDataProvider.liveDataInstance<List<Movie>>()).thenReturn(movieLiveData)

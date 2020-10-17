@@ -84,14 +84,4 @@ class MovieDBRepositoryTest {
         assertEquals(movieEntity.results[0].title, result[0].title)
 
     }
-
-    @Test
-    fun givenGetMovieRequestError_whenGettingMovies_thenReturnEmptyList() {
-        // WHEN get movies error
-        Mockito.`when`(movieDatabase.getMovies(1)).thenReturn(Single.error(Throwable("error")))
-        // GIVEN movies requested
-        movieDBRepository.getMovies(1).subscribe(movieTestObserver)
-        // THEN return emptyList
-        movieTestObserver.assertValue(emptyList())
-    }
 }

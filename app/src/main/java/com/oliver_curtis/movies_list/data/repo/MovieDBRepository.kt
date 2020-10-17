@@ -13,7 +13,7 @@ class MovieDBRepository(private val movieDatabase: MovieDatabase) : MovieReposit
     private val movieList: MutableList<Movie>? = arrayListOf()
 
     override fun getMovies(page:Int): Single<List<Movie>?> {
-        return movieDatabase.getMovies(page).map { toMovie(it.results)}.onErrorReturn { emptyList()}
+        return movieDatabase.getMovies(page).map { toMovie(it.results)}
     }
 
     private fun toMovie(entity: List<MovieDetailsApiEntity>) : List<Movie>? {
