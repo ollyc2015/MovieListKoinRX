@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -23,6 +24,7 @@ android {
             buildConfigField "String", "API_KEY", "\"${localProperties['API_KEY']}\""
             buildConfigField "String", "BASE_URL", rootProject.ext.apiBaseUrl
             buildConfigField "String", "POSTER_BASE_URL", rootProject.ext.posterBaseUrl
+            buildConfigField "int", "CACHE_EXPIRY_SECS", rootProject.ext.cacheExpirySecs
 
         }
         release {
@@ -32,6 +34,7 @@ android {
             buildConfigField "String", "API_KEY", "\"${localProperties['API_KEY']}\""
             buildConfigField "String", "BASE_URL", rootProject.ext.apiBaseUrl
             buildConfigField "String", "POSTER_BASE_URL",  rootProject.ext.posterBaseUrl
+            buildConfigField "int", "CACHE_EXPIRY_SECS", rootProject.ext.cacheExpirySecs
 
         }
     }
@@ -79,5 +82,11 @@ dependencies {
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha06"
+
+    //Room DB
+    implementation 'androidx.room:room-runtime:2.2.3'
+    implementation 'androidx.room:room-rxjava2:2.2.3'
+    implementation 'androidx.room:room-ktx:2.2.3'
+    kapt 'androidx.room:room-compiler:2.2.3'
 
 }

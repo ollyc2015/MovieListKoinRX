@@ -1,8 +1,8 @@
 package com.oliver_curtis.movies_list.data.repo
 
-import com.oliver_curtis.movies_list.data.db.MovieDatabase
-import com.oliver_curtis.movies_list.data.entity.MovieApiEntity
-import com.oliver_curtis.movies_list.data.entity.MovieDetailsApiEntity
+import com.oliver_curtis.movies_list.data.source.impl.RemoteMovieDataSource
+import com.oliver_curtis.movies_list.data.entity.server.MovieApiEntity
+import com.oliver_curtis.movies_list.data.entity.server.MovieDetailsApiEntity
 import com.oliver_curtis.movies_list.domain.model.Movie
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
@@ -18,7 +18,7 @@ class MovieDBRepositoryTest {
 
 
     @Mock
-    lateinit var movieDatabase: MovieDatabase
+    lateinit var movieDatabase: RemoteMovieDataSource
 
     private val movieTestObserver = TestObserver<List<Movie>>()
 

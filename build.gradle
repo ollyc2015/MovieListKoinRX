@@ -53,6 +53,7 @@ allprojects {
 ext {
     posterBaseUrl = "\"http://image.tmdb.org/t/p/w185\""
     apiBaseUrl = "\"https://api.themoviedb.org\""
+    cacheExpirySecs = "30"
 }
 
 task clean(type: Delete) {

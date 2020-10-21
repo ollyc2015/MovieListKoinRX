@@ -1,7 +1,7 @@
 package com.oliver_curtis.movies_list.data.api
 
 import com.oliver_curtis.movies_list.BuildConfig
-import com.oliver_curtis.movies_list.data.entity.MovieApiEntity
+import com.oliver_curtis.movies_list.data.entity.server.MovieApiEntity
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
