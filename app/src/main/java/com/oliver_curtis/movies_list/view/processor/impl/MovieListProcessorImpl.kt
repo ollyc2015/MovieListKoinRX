@@ -16,7 +16,6 @@ class MovieListProcessorImpl(private val errorResolver: ErrorResolver = DefaultE
         if (callResult != null) {
 
             if (callResult.hasResult()) {
-                MovieListFragment.PAGE_NUMBER++
                 view?.displayMovies(callResult.result())
             } else if(callResult.hasError()) {
                 view?.displayError(errorResolver.findErrorMessageResId(callResult.error()))

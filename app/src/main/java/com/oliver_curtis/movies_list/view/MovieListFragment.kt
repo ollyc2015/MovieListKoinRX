@@ -84,6 +84,9 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
 
         movieRequestStatus.showSuccess()
         (movieList.adapter as MovieListAdapter).updateAll(movies)
+
+        PAGE_NUMBER++
+        PROCESSING_REQUEST = false
     }
 
     override fun displayError(error: Int) {
@@ -101,7 +104,13 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
-                    getMoviesFromDatabase(PAGE_NUMBER).observe(viewLifecycleOwner, getMoviesObserver)
+                    if (!PROCESSING_REQUEST) {
+                        PROCESSING_REQUEST = true
+                        getMoviesFromDatabase(PAGE_NUMBER).observe(
+                            viewLifecycleOwner,
+                            getMoviesObserver
+                        )
+                    }
                 }
             }
         })
@@ -118,6 +127,7 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
     companion object{
 
         var PAGE_NUMBER = 1
+        var PROCESSING_REQUEST = false
 
     }
 }
