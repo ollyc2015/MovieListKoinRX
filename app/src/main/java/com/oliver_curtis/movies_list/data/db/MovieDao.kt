@@ -1,7 +1,6 @@
 package com.oliver_curtis.movies_list.data.db
 
 import androidx.room.*
-import com.oliver_curtis.movies_list.data.entity.MovieDetailsEntity
 import com.oliver_curtis.movies_list.data.entity.db.MovieDetailsDBEntity
 import io.reactivex.Single
 
@@ -32,7 +31,6 @@ abstract class MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertTimeStamp(timestamp: TimeStampEntity) // Cannot return anything from here due to a room-rxjava2 bug.
-
 
     fun hasMovieCacheTime(): Single<Boolean> = getTimeStampCount(MOVIE_LIST_ENTITY_NAME).map { it == 1 }
 

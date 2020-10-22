@@ -18,7 +18,7 @@ class MovieDBRepository(
     private val movieList: MutableList<Movie>? = arrayListOf()
 
     override fun getMovies(page: Int): Single<List<Movie>?> {
-        return readOfFetchMovies(page).map { toMovie(it) }
+        return readOfFetchMovies(page).map { entity -> entity.map { toMovie(it) } }
     }
 
     private fun readOfFetchMovies(page: Int): Single<List<MovieDetailsEntity>> {
@@ -35,24 +35,28 @@ class MovieDBRepository(
     }
 
 
-    private fun toMovie(entity: List<MovieDetailsEntity>): List<Movie>? {
+    private fun toMovie(entity: MovieDetailsEntity): Movie {
 
-        entity.forEach {
+       // movieList?.clear()
 
-            val id = it.id
+        //entity.forEach {
 
-            val posterPath = it.poster_path
+            val id = entity.id
 
-            val title = it.title
+            val posterPath = entity.poster_path
 
-            val votingAverage = it.vote_average
+            val title = entity.title
 
-            val releaseDate = it.release_date
+            val votingAverage = entity.vote_average
+
+            val releaseDate = entity.release_date
             val date = formatDate(releaseDate)
 
-            movieList?.add(Movie(id, posterPath, title, votingAverage, date))
+        return Movie(id, posterPath, title, votingAverage, date)
 
-        }
-        return movieList?.toList()
+           // movieList?.add(Movie(id, posterPath, title, votingAverage, date))
+
+       // }
+        //return movieList?.toList()
     }
 }

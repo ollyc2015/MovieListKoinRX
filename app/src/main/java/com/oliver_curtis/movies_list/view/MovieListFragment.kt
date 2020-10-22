@@ -67,7 +67,6 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
     private fun fetchMovies() {
         movieRequestStatus.showProgress()
         getMoviesFromDatabase(PAGE_NUMBER).observe(viewLifecycleOwner, getMoviesObserver)
-        PAGE_NUMBER++
     }
 
     private var getMoviesObserver = object : Observer<CallResult<List<Movie>>> {
@@ -103,7 +102,6 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
                     getMoviesFromDatabase(PAGE_NUMBER).observe(viewLifecycleOwner, getMoviesObserver)
-                    PAGE_NUMBER++
                 }
             }
         })

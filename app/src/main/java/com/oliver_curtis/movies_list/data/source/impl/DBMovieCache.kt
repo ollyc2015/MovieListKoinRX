@@ -37,7 +37,7 @@ class DBMovieCache(expiryTimeInSecs: Int, private val dao: MovieDao, private val
     }
 
     override fun getMovies(): Single<List<MovieDetailsEntity>> {
-        return dao.getMovies().map {  entities -> entities.map { it as MovieDetailsEntity} }
+        return dao.getMovies().map {  entities -> entities.map { it } }
     }
 
     override fun cacheMovies(movies: List<MovieDetailsEntity>) {

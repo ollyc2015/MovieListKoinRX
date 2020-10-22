@@ -20,6 +20,7 @@ fun <T> readOrFetchEntity(
         }
     }
 
+    //Return results as one collection
     return isCached.invoke().flatMap(readOrFetch)
 }
 

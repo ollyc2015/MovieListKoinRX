@@ -4,6 +4,7 @@ import com.oliver_curtis.movies_list.common.error.DefaultErrorResolver
 import com.oliver_curtis.movies_list.common.error.ErrorResolver
 import com.oliver_curtis.movies_list.common.viewmodel.CallResult
 import com.oliver_curtis.movies_list.domain.model.Movie
+import com.oliver_curtis.movies_list.view.MovieListFragment
 import com.oliver_curtis.movies_list.view.MovieView
 import com.oliver_curtis.movies_list.view.processor.MovieListProcessor
 
@@ -15,6 +16,7 @@ class MovieListProcessorImpl(private val errorResolver: ErrorResolver = DefaultE
         if (callResult != null) {
 
             if (callResult.hasResult()) {
+                MovieListFragment.PAGE_NUMBER++
                 view?.displayMovies(callResult.result())
             } else if(callResult.hasError()) {
                 view?.displayError(errorResolver.findErrorMessageResId(callResult.error()))

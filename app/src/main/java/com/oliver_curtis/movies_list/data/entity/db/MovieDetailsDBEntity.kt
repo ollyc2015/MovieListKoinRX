@@ -65,6 +65,5 @@ data class MovieDetailsDBEntity(
         entity.video,
         entity.vote_average,
         entity.vote_count
-
     )
 }
