@@ -15,7 +15,6 @@ class MovieDBRepository(
     private val localSource: MovieCache
 ) : MovieRepository {
 
-    private val movieList: MutableList<Movie>? = arrayListOf()
 
     override fun getMovies(page: Int): Single<List<Movie>?> {
         return readOfFetchMovies(page).map { entity -> entity.map { toMovie(it) } }
@@ -37,10 +36,6 @@ class MovieDBRepository(
 
     private fun toMovie(entity: MovieDetailsEntity): Movie {
 
-        // movieList?.clear()
-
-        //entity.forEach {
-
         val id = entity.id
 
         val posterPath = entity.poster_path
@@ -54,9 +49,5 @@ class MovieDBRepository(
 
         return Movie(id, posterPath, title, votingAverage, date)
 
-        // movieList?.add(Movie(id, posterPath, title, votingAverage, date))
-
-        // }
-        //return movieList?.toList()
     }
 }

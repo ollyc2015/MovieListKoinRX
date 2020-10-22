@@ -8,7 +8,7 @@ import com.oliver_curtis.movies_list.data.entity.MovieDetailsEntity
 @Entity(tableName = "movies_details")
 data class MovieDetailsDBEntity(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     override val id: Int,
 
@@ -52,7 +52,7 @@ data class MovieDetailsDBEntity(
 ) : MovieDetailsEntity {
 
     constructor(entity: MovieDetailsEntity) : this(
-        entity.id,
+        0,
         entity.adult,
         entity.backdrop_path,
         entity.original_language,

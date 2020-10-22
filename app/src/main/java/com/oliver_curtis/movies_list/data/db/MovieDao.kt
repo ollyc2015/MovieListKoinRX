@@ -17,7 +17,7 @@ abstract class MovieDao {
     @Query("SELECT cache_timestamp FROM timestamps WHERE entity_name = :entityName")
     abstract fun getTimeStamp(entityName: String): Single<Long>
 
-    @Query("SELECT * FROM movies_details")
+    @Query("SELECT * FROM movies_details ORDER BY id ASC")
     abstract fun getMovies(): Single<List<MovieDetailsDBEntity>>
 
     @Query("DELETE FROM movies_details")
