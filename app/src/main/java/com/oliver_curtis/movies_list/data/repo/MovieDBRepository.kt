@@ -37,26 +37,26 @@ class MovieDBRepository(
 
     private fun toMovie(entity: MovieDetailsEntity): Movie {
 
-       // movieList?.clear()
+        // movieList?.clear()
 
         //entity.forEach {
 
-            val id = entity.id
+        val id = entity.id
 
-            val posterPath = entity.poster_path
+        val posterPath = entity.poster_path
 
-            val title = entity.title
+        val title = entity.title
 
-            val votingAverage = entity.vote_average
+        val votingAverage = entity.vote_average
 
-            val releaseDate = entity.release_date
-            val date = formatDate(releaseDate)
+        val releaseDate = entity.release_date
+        val date = formatDate(releaseDate)
 
         return Movie(id, posterPath, title, votingAverage, date)
 
-           // movieList?.add(Movie(id, posterPath, title, votingAverage, date))
+        // movieList?.add(Movie(id, posterPath, title, votingAverage, date))
 
-       // }
+        // }
         //return movieList?.toList()
     }
 }
