@@ -15,10 +15,15 @@ class MovieListAdapter(private val movies: MutableList<Movie>): RecyclerView.Ada
         return MovieViewHolder(view)
     }
 
+    //Using viewholder pattern to reduce number of findViewById calls, as this is an expensive call.
+    //By using the viewholder pattern a created object will hold references to the sub-views after you "find" them
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bindLaunch(movies[position])
     }
 
+    //We use a DiffUtil to check if any changes have been detected in the data in the recylerview
+    //If changes have been made, update the view. The alternative is to use notifyDataSetChanged()
+    //which is an expensive call, as we redraw all the views.
     fun updateAll(updated: List<Movie>) {
         val diffResult = DiffUtil.calculateDiff(MovieDiff(movies, updated), false)
         movies.clear()

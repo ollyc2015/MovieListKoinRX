@@ -20,18 +20,19 @@ class MovieViewModel(
 
     fun getMovies(page:Int): MutableLiveData<CallResult<List<Movie>>> {
 
-        return liveDataProvider.liveDataInstance<List<Movie>>().apply {
+        //return MutableLiveData<CallResult<T>> by passing our List<movie> (our T) then use apply to configure our object
+        //in this case, update our List<Movie> with the value returned from the server.
+            return liveDataProvider.liveDataInstance<List<Movie>>().apply {
 
             movieUseCase.fetchMovies(page)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
+                .subscribeOn(schedulerProvider.io()) //It is used for non CPU-intensive I/O type work including interaction with the file system, performing network calls, database interactions, etc.
+                .observeOn(schedulerProvider.ui()) //observe on the main thread
                 .subscribe(object : SingleObserver<List<Movie>?> {
                     override fun onSuccess(t: List<Movie>) {
 
                         this@apply.postValue(CallResult(t))
                     }
-
-                    override fun onSubscribe(d: Disposable) {}
+                    override fun onSubscribe(d: Disposable) {}//onSubscribe: will be called whenever an observer is subscribed. which we are not using
                     override fun onError(e: Throwable) {
 
                         this@apply.postValue(CallResult(e))

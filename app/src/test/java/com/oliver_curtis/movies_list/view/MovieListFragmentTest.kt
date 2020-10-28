@@ -62,7 +62,8 @@ class MovieListFragmentTest {
         // GIVEN movies actually requested from the DB
         viewModel.getMovies(1).observeForever(movieObserver)
 
-        // run assertion against observer
+        // run assertion against observer using library providing helper functions
+        // argumentCaptor allows us to capture the value of the arguments passed
         argumentCaptor<CallResult<List<Movie>>>().apply {
             verify(movieObserver).onChanged(capture())
         }.run { Assert.assertEquals(expected, firstValue.error()) }
