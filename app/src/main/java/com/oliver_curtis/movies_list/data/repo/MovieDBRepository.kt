@@ -23,13 +23,13 @@ class MovieDBRepository(
     private fun readOfFetchMovies(page: Int): Single<List<MovieDetailsEntity>> {
         val hasMovies = { localSource.hasMovies() }
         val readMovies = { localSource.getMovies() }
-        val fetchMovies = { fetchValidLaunches(page) }
+        val fetchMovies = { fetchValidMovies(page) }
         val cacheMovies = { movies: List<MovieDetailsEntity> -> localSource.cacheMovies(movies) }
 
         return readOrFetchEntity(hasMovies, readMovies, fetchMovies, cacheMovies)
     }
 
-    private fun fetchValidLaunches(page: Int): Single<List<MovieDetailsEntity>> {
+    private fun fetchValidMovies(page: Int): Single<List<MovieDetailsEntity>> {
         return remoteSource.getMovies(page).map { it.results }
     }
 
