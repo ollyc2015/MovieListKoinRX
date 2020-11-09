@@ -16,6 +16,9 @@ fun <T> readOrFetchEntity(
         if (cached) {
             readFromCache.invoke()
         } else {
+            //fetch movies and then pass the movies returned (it) to the cacheEntity method, as well as the
+            //value 'cache', so that when passed to the cacheEntity method, we can pass the value of entity to the cache
+            //and then return it (the List<MovieDetailsEntity> in our case)
             fetch.invoke().map { cacheEntity(it, cache) }
         }
     }
