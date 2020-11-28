@@ -6,6 +6,7 @@ import io.reactivex.Single
 
 
 class MovieUseCaseImpl(private val repository: MovieRepository) : MovieUseCase {
-    override fun fetchMovies(page:Int): Single<List<Movie>?> = repository.getMovies(page)
+    override fun fetchMoviesFromCacheElseRemote(page:Int): Single<List<Movie>?> = repository.getMoviesFromCacheElseRemote(page)
+    override fun fetchMoviesFromRemote(page: Int): Single<List<Movie>?> = repository.fetchValidMoviesFromRemote(page)
 
 }

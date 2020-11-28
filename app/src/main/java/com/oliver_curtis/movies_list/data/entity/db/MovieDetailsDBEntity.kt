@@ -16,7 +16,7 @@ data class MovieDetailsDBEntity(
     override val adult: Boolean,
 
     @ColumnInfo(name = "backdrop_path")
-    override val backdrop_path: String,
+    override val backdrop_path: String?,
 
     @ColumnInfo(name = "original_language")
     override val original_language: String,
@@ -34,7 +34,7 @@ data class MovieDetailsDBEntity(
     override val poster_path: String,
 
     @ColumnInfo(name = "release_date")
-    override val release_date: String,
+    override val release_date: String?,
 
     @ColumnInfo(name = "title")
     override val title: String,

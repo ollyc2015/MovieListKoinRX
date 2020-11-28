@@ -54,10 +54,10 @@ class MovieViewModelTest {
         val expected = listOf(movie)
 
         Mockito.`when`(defaultLiveDataProvider.liveDataInstance<List<Movie>>()).thenReturn(movieLiveData)
-        Mockito.`when`(useCase.fetchMovies(1)).thenReturn(Single.just(expected))
+        Mockito.`when`(useCase.fetchMoviesFromCacheElseRemote(1)).thenReturn(Single.just(expected))
 
         // call our methods under test and apply our observer whilst we are doing it.
-        viewModel.getMovies(1).observeForever(movieObserver)
+        viewModel.getMoviesFromCacheElseRemote(1).observeForever(movieObserver)
 
         // run assertion against observer
         argumentCaptor<CallResult<List<Movie>>>().apply {
@@ -71,10 +71,10 @@ class MovieViewModelTest {
 
         Mockito.`when`(defaultLiveDataProvider.liveDataInstance<List<Movie>>()).thenReturn(movieLiveData)
         // manipulate the response to trigger an error state "Single.error(throwable)"
-        Mockito.`when`(useCase.fetchMovies(1)).thenReturn(Single.error(throwable))
+        Mockito.`when`(useCase.fetchMoviesFromCacheElseRemote(1)).thenReturn(Single.error(throwable))
 
         // call our methods under test and apply our observer whilst we are doing it.
-        viewModel.getMovies(1).observeForever(movieObserver)
+        viewModel.getMoviesFromCacheElseRemote(1).observeForever(movieObserver)
 
         // run assertion against observer
         argumentCaptor<CallResult<List<Movie>>>().apply {

@@ -1,6 +1,7 @@
 package com.oliver_curtis.movies_list.data.repo
 
 import com.oliver_curtis.movies_list.common.date.formatDate
+import com.oliver_curtis.movies_list.common.rx.fetchEntity
 import com.oliver_curtis.movies_list.common.rx.readOrFetchEntity
 import com.oliver_curtis.movies_list.data.entity.MovieDetailsEntity
 import com.oliver_curtis.movies_list.data.source.MovieCache
@@ -15,9 +16,10 @@ class MovieDBRepository(
     private val localSource: MovieCache
 ) : MovieRepository {
 
+    private var movieList = arrayListOf<Movie>()
 
-    override fun getMovies(page: Int): Single<List<Movie>?> {
-        return readOfFetchMovies(page).map { entity -> entity.map { toMovie(it) } }
+    override fun getMoviesFromCacheElseRemote(page: Int): Single<List<Movie>?> {
+        return readOfFetchMovies(page).map { entity -> toMovie(entity)  }
     }
 
     private fun readOfFetchMovies(page: Int): Single<List<MovieDetailsEntity>> {
@@ -29,25 +31,41 @@ class MovieDBRepository(
         return readOrFetchEntity(hasMovies, readMovies, fetchMovies, cacheMovies)
     }
 
+    override fun fetchValidMoviesFromRemote(page: Int): Single<List<Movie>?> {
+
+        val fetchMovies = { fetchValidMovies(page) }
+        val cacheMovies = { movies: List<MovieDetailsEntity> -> localSource.cacheMovies(movies) }
+
+        return fetchEntity(fetchMovies, cacheMovies).map { entity -> toMovie(entity) }
+    }
+
     private fun fetchValidMovies(page: Int): Single<List<MovieDetailsEntity>> {
         return remoteSource.getMovies(page).map { it.results }
     }
 
 
-    private fun toMovie(entity: MovieDetailsEntity): Movie {
+    private fun toMovie(entity: List<MovieDetailsEntity>): List<Movie> {
 
-        val id = entity.id
+        entity.forEach {
 
-        val posterPath = entity.poster_path
+            val id = it.id
 
-        val title = entity.title
+            val posterPath = it.poster_path
 
-        val votingAverage = entity.vote_average
+            val title = it.title
 
-        val releaseDate = entity.release_date
-        val date = formatDate(releaseDate)
+            val votingAverage = it.vote_average
 
-        return Movie(id, posterPath, title, votingAverage, date)
+            val releaseDate = it.release_date
+            if (!releaseDate.isNullOrBlank()) {
+                val date = formatDate(releaseDate)
+                movieList.add(Movie(id, posterPath, title, votingAverage, date))
+            }else{
+                movieList.add(Movie(id, posterPath, title, votingAverage, ""))
+            }
+        }
+
+        return movieList
 
     }
 }

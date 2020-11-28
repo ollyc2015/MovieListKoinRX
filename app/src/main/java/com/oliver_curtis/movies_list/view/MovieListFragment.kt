@@ -66,7 +66,7 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
 
     private fun fetchMovies() {
         movieRequestStatus.showProgress()
-        getMoviesFromDatabase(PAGE_NUMBER).observe(viewLifecycleOwner, getMoviesObserver)
+        getMoviesFromCache(PAGE_NUMBER).observe(viewLifecycleOwner, getMoviesObserver)
     }
 
     private var getMoviesObserver = object : Observer<CallResult<List<Movie>>> {
@@ -93,9 +93,17 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
         movieRequestStatus.showError(error)
     }
 
-    private fun getMoviesFromDatabase(page:Int): MutableLiveData<CallResult<List<Movie>>> {
+    //First check the cache for movies and if they do not exist, call the remote (done in repo)
+    private fun getMoviesFromCache(page:Int): MutableLiveData<CallResult<List<Movie>>> {
 
-        return viewModel.getMovies(page)
+        return viewModel.getMoviesFromCacheElseRemote(page)
+    }
+
+    //If we have gotten to the bottom of our recyclerView, then we have no more movies in our cache,
+    //therefore, we need to fetch more from the remote and store in the cache
+    private fun getMoviesFromRemote(page:Int): MutableLiveData<CallResult<List<Movie>>> {
+
+        return viewModel.getMoviesFromRemote(page)
     }
 
     private fun detectBottomOfMovies() {
@@ -106,7 +114,7 @@ class MovieListFragment : Fragment(),MovieView, MovieListView {
                 if (!recyclerView.canScrollVertically(1)) {
                     if (!PROCESSING_REQUEST) {
                         PROCESSING_REQUEST = true
-                        getMoviesFromDatabase(PAGE_NUMBER).observe(
+                        getMoviesFromRemote(PAGE_NUMBER).observe(
                             viewLifecycleOwner,
                             getMoviesObserver
                         )

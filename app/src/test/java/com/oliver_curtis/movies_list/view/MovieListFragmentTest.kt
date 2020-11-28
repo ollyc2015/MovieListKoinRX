@@ -41,10 +41,10 @@ class MovieListFragmentTest {
         val expected = listOf(movie)
 
         // WHEN we get movies from the database, we expect to receive the value stated
-        Mockito.`when`(viewModel.getMovies(1)).thenReturn(MutableLiveData(CallResult(expected)))
+        Mockito.`when`(viewModel.getMoviesFromCacheElseRemote(1)).thenReturn(MutableLiveData(CallResult(expected)))
 
         // GIVEN movies actually requested from the DB
-        viewModel.getMovies(1).observeForever(movieObserver)
+        viewModel.getMoviesFromCacheElseRemote(1).observeForever(movieObserver)
 
         // run assertion against observer
         argumentCaptor<CallResult<List<Movie>>>().apply {
@@ -57,10 +57,10 @@ class MovieListFragmentTest {
         val expected = Throwable()
 
         // WHEN we get movies from the database, we expect to receive the value stated
-        Mockito.`when`(viewModel.getMovies(1)).thenReturn(MutableLiveData(CallResult(expected)))
+        Mockito.`when`(viewModel.getMoviesFromCacheElseRemote(1)).thenReturn(MutableLiveData(CallResult(expected)))
 
         // GIVEN movies actually requested from the DB
-        viewModel.getMovies(1).observeForever(movieObserver)
+        viewModel.getMoviesFromCacheElseRemote(1).observeForever(movieObserver)
 
         // run assertion against observer using library providing helper functions
         // argumentCaptor allows us to capture the value of the arguments passed

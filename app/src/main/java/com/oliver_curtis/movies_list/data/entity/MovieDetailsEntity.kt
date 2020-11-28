@@ -6,7 +6,7 @@ interface MovieDetailsEntity {
 
     val adult: Boolean
 
-    val backdrop_path: String
+    val backdrop_path: String?
 
     val original_language: String
 
@@ -18,7 +18,7 @@ interface MovieDetailsEntity {
 
     val poster_path: String
 
-    val release_date: String
+    val release_date: String?
 
     val title: String
 

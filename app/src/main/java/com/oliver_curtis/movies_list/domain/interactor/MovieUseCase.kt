@@ -6,5 +6,6 @@ import io.reactivex.Single
 
 interface MovieUseCase {
 
-    fun fetchMovies(page:Int): Single<List<Movie>?>
+    fun fetchMoviesFromCacheElseRemote(page:Int): Single<List<Movie>?>
+    fun fetchMoviesFromRemote(page:Int): Single<List<Movie>?>
 }

@@ -27,6 +27,18 @@ fun <T> readOrFetchEntity(
     return isCached.invoke().flatMap(readOrFetch)
 }
 
+fun <T> fetchEntity(
+    fetch: () -> Single<T>,
+    cache: (T) -> Unit
+): Single<T> {
+
+    //fetch movies and then pass the movies returned (it) to the cacheEntity method, as well as the
+    //value 'cache', so that when passed to the cacheEntity method, we can pass the value of entity to the cache
+    //and then return it (the List<MovieDetailsEntity> in our case)
+    return fetch.invoke().map { cacheEntity(it, cache) }
+}
+
+
 private fun <T> cacheEntity(entity: T, cache: (T) -> Unit): T {
     return entity.apply { cache.invoke(this) }
 }
