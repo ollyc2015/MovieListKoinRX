@@ -3,7 +3,7 @@
 Simple Android application that displays Movie Data using the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
 
 ## Useful Info
-This is exactly the same project as [my other Movie List](https://github.com/ollyc2015/MovieListDaggerHiltCR), however, this project uses RXJava in replace of Kotlin Coroutines and Koin in replace of Dagger Hilt.
+This is exactly the same project as [my other Movie List](https://github.com/ollyc2015/MovieListDaggerHiltCR), however, this project uses RXJava in replace of Kotlin Coroutines and Koin in replace of Dagger Hilt. In addition, this project also uses the room database for local caching.
 
 ### Description
 
@@ -40,8 +40,7 @@ More manual and unit testing can always be added as well as automation tests.
 
 ### Libraries
 
-The [Retrofit2](https://square.github.io/retrofit/) library was used to call the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) endpoints whereas [RxJava2](https://github.com/ReactiveX/RxJava) was employed to orchestrate the remote server calls. The 
-[Glide](https://github.com/bumptech/glide) library helped with image display. For dependency injection, the [Koin](https://insert-koin.io/) framework was used. To aid unit testing, the [Mockito](https://site.mockito.org/) mocking framework and [junit](https://junit.org/junit4/) annotations were used to setup and aid with configuration of the tests.
+The [Retrofit2](https://square.github.io/retrofit/) library was used to call the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) endpoints whereas [RxJava2](https://github.com/ReactiveX/RxJava) was employed to orchestrate the remote server calls. Local database caching is handled by the [Room Persistence Library](https://developer.android.com/training/data-storage/room). The [Glide](https://github.com/bumptech/glide) library helped with image display. For dependency injection, the [Koin](https://insert-koin.io/) framework was used. To aid unit testing, the [Mockito](https://site.mockito.org/) mocking framework and [junit](https://junit.org/junit4/) annotations were used to setup and aid with configuration of the tests.
 
 ### Contact
 
