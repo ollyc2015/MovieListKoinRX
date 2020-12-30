@@ -33,7 +33,7 @@ There is 1 external configuration parameter contained in the `local.properties` 
 ### Issues
 
 1. The layout of the items in the list can be improved to function better with different screen sizes
-2. A local DB should be added to avoid constant calls to the API
+2. ~~A local DB should be added to avoid constant calls to the API~~ - Implemented
 
 More manual and unit testing can always be added as well as automation tests.
 
